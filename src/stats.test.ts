@@ -1,23 +1,31 @@
+import { describe, expect, it, test } from "./testLib";
+import * as statsAsync from "./statsAsync";
 import { average, sum } from "./stats";
 
-let result, expected;
-result = sum([1,2,3]);
-expected = 6;
+describe("Stats should", ()=>{
+    it("calculate the sum of all elements", ()=>{
+        const result = sum([1, 2, 3]);
+        const expected = 6;
+        expect(expected).toBe(result);
+    })
+    
+    it("calculate the average of all elements", ()=>{
+        const result = average([1, 2, 3]);
+        const expected = 2;
+        expect(expected).toBe(result);
+    })
+})
 
-if(result === expected) {
-    console.log("✅ ")
-} 
-else {
-    throw new Error(`❌ ${result} is not equal to ${expected}`);
-}
-
-
-result = average([1,2,3]);
-expected = 2;
-
-if(result === expected) {
-    console.log("✅ ")
-} 
-else {
-    throw new Error(`❌ ${result} is not equal to ${expected}`);
-}
+describe("Stats should async", ()=>{
+    it("calculate the sum of all elements (async)", async ()=>{
+        const result = await statsAsync.sum([1, 2, 3]);
+        const expected = 6;
+        expect(expected).toBe(result);
+    })
+    
+    it("calculate the average of all elements (async)", async ()=>{
+        const result = await statsAsync.average([1, 2, 3]);
+        const expected = 2;
+        expect(expected).toBe(result);
+    })
+})
